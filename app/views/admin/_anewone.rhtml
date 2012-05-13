@@ -1,0 +1,10 @@
+<h1>New item</h1>
+<% form_tag 'create' do %>
+<%= render(:partial => "form_top")%>
+<p><label for="item_item_desc">Item Contents:</label><br/>
+<%= text_area_tag "larrytext", nil, :size => "80x20" %>
+</p>
+<%= render(:partial => "form_bottom")%>
+
+<% end %>
+<%= link_to 'Back', :action => 'list' %>

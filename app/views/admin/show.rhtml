@@ -1,0 +1,49 @@
+<br/><br/><%= link_to 'New Next item', :action => 'new_next' %><br><br>
+<%= link_to 'New item with any number', :action => 'new' %><br/><br/>
+<% form_tag(:action => :destroy) do %>
+Enter a number to delete:
+<%= text_field_tag(:ndelete, params[:ndelete], :size => 5)%>
+<input onclick="return confirm('Are you sure?');" type="submit" value="Delete" />
+<% end %>
+<% form_tag(:action => :edit) do %>
+Enter a number to edit:
+<%= text_field_tag(:nedit, params[:nedit], :size => 5)%>
+<%= submit_tag 'Edit' %>
+<% end %>
+<p>
+  <b>Create date:</b> <%=h @item.create_date.strftime("%m/%d/%y") %>
+</p>
+<p>
+  <b>Number:</b> <%=h @item.number %>
+</p>
+<p>
+  <b>Act type:</b> <%=h @item.act_type %>
+</p>
+<p>
+  <b>Item desc:</b> <%= @item.item_desc %>
+</p>
+
+<b>Tags:</b>
+<span class="tagcl">
+<% @item.tags.each do |t| %>   
+	<%= t.name%>
+<% end %>
+</span>
+
+<p>
+  <b>Value when done:</b> <%=h @item.value_when_done %>
+</p>
+<p>
+  <b>Where to do:</b> <%=h @item.where_to_do %>
+</p>
+<p>
+  <b>Short task name:</b> <%=h @item.short_task_name %>
+</p>
+<p>
+  <b>Swiss cheese:</b> <%=h @item.swiss_cheese %>
+</p>
+<p>
+  <b>Out indicator:</b> <%=h @item.out_indicator %>
+</p>
+<%= link_to 'Edit', :action => 'edit', :id => @item %> |
+<%= link_to 'List', :action => 'list' %>

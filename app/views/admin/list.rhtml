@@ -1,0 +1,55 @@
+<br/><br/>
+<% form_tag(:action => :search) do %>
+Search: 
+<%= text_field_tag(:search_query, params[:search_query], :size => 30)%>
+<%= submit_tag 'Go' %>
+<% end %>
+
+<%= link_to 'New Next item', :action => 'new_next' %><br><br>
+<%= link_to 'New item with any number', :action => 'new' %>
+<% form_tag(:action => :destroy) do %>
+Enter a number to delete:
+<%= text_field_tag(:ndelete, params[:ndelete], :size => 5)%>
+
+<input onclick="return confirm('Are you sure?');" type="submit" value="Delete" />
+<% end %>
+<% form_tag(:action => :edit) do %>
+Enter a number to edit:
+<%= text_field_tag(:nedit, params[:nedit], :size => 5)%>
+<%= submit_tag 'Edit' %>
+<% end %>
+
+<h1>Listing items</h1>
+
+<table border="1">
+  <tr>  
+    <th>Create date</th>
+    <th>Number</th>
+    <th>Act type</th>
+    <th>Item desc</th>
+    <th>When<br/>done,<br />Value<br />(<u>to me</u>)</th>
+    <th></th>  
+  </tr>
+  
+<% for item in @items %>
+	<tr>  
+		<td width="84" valign="top"><%= item.create_date.strftime("%m/%d/%y") %></td>
+		<td width="70" valign="top"><%= link_to item.number, :action => "edit", :id => item.id %></td>
+		<td width="70" valign="top"><%= item.act_type %></td>    
+		<td width="750" valign="top"><%= item.item_desc %><br> 
+			<span class="tagcl">
+			<% item.tags.each do |t| %>   
+				<%= link_to t.name, :action => "list", :id => t.name %>
+			<% end %>
+			</span>
+		</td>
+		<td valign="top"><%= item.value_when_done %></td>
+		<td valign="top"><%= link_to 'Edit', :action => 'edit', :id => item %><br /><br />
+    <%= link_to 'Destroy', { :action => 'destroy', :id => item }, :confirm => 'Are you sure you want to delete ' + item.number.to_s + '?', :post => true %></td>
+	</tr>
+<% end %>
+</table>
+
+<br />
+<%= link_to 'New Next item', :action => 'new_next' %><br><br>
+<%= link_to 'New item with any number', :action => 'new' %>

@@ -1,0 +1,11 @@
+<h1>Tags</h1>
+<h2>Used Tags</h2>
+<% for label in @used_tags %>
+ <%= label.name %><br/>
+<% end %>
+<h2>Unused Tags</h2>
+<% for label in @unused_tags %>
+ <%= label.name %>
+   <%= link_to 'Delete', { :action => 'destroy', :id => label }, :confirm => 'Are you sure?', :post => true %></td> 
+ <br/>
+<% end %>

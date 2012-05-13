@@ -1,0 +1,39 @@
+<label>Tags:</label>   
+  <% thelist = @item.tags.collect{|t| t.name}.join(" ") %> 
+  <div id="mydiv"> 
+  <%= text_field_tag "tag_list", thelist, :size => 40 %>
+</div>  
+<b>your tags:</b><br>
+
+<% @labels = Label.used_tags %>
+ <% 
+ for label in @labels
+ %>
+<%= link_to_remote( label.name,
+:update => 'mydiv',
+:url => { :action => "uptags", :id => label.name, :tagstr => thelist } ) %>  
+ &nbsp;      
+ <% end %>
+<br><br>  
+ &nbsp;&nbsp;If this item is tagged SE:<br/><br/>
+<table>
+  <tr>
+  <td><label>Short Task Name:</label></td>
+  <td><%= text_field 'item', 'short_task_name', :size => 35 %></td>
+  </tr>
+  <tr>
+  <td><label>What is needed to do? (Swiss Cheese)</label></td>
+  <td> <%= text_field 'item', 'swiss_cheese' %></td>
+  </tr>
+  <tr>
+  <td><label>Where?</label></td>
+  <td><%= text_field 'item', 'where_to_do' %>
+  Does this involve going out? 
+  Yes
+  <%= radio_button( "item", :out_indicator.to_s, true )%>  &nbsp;&nbsp;
+  No    <%= radio_button( "item", :out_indicator, false )%>
+  </td>
+  <td><%= submit_tag 'Save' %></td>
+  </tr>
+</table>
+

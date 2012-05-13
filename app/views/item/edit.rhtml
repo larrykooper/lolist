@@ -1,0 +1,30 @@
+<html>
+ <head>
+  <title>Edit Item</title>
+ </head>
+ <body>
+ <h1>Edit Item</h1>
+
+ 
+ <%= start_form_tag :action => 'update' , :id => @item    %>
+ <table>
+ <tr><td>
+ 
+ <label>LO Number:</label></td>
+  <td><%= text_field 'item', 'number' %>
+ </td> </tr>
+  <tr><td>
+  <label>Type:</label></td>
+  <td><%= text_field 'item', 'act_type' %><br></td></tr>
+  </table>
+  <label>Item Contents:</label><br>
+  <%= text_area "item", "item_desc", "cols" => 80 %><br>
+  <label>Tags:</label>
+  <%= text_field_tag "tag_list",
+@item.tags.collect{|t| t.name}.join(" "),
+:size => 40 %>  
+  <%= submit_tag 'save' %>
+ <%= end_form_tag %>
+
+ </body>
+</html>

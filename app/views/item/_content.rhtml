@@ -1,0 +1,18 @@
+<div id="item-<%=item.id%>" class="item-details">
+<div class="name"><%= item.number %>
+<%=
+if item.tags.blank?
+""
+else
+"(" + item.tags.collect{|tag| tag.name}.join(", ") + ")"
+end
+%>
+
+<%= link_to_function("Edit Tags", "Element.toggle($(' #{form_id}' ))") %>
+</div>
+<div class="address">
+
+<%= item.act_type %><br/>
+<%= item.item_desc %>
+</div>
+</div>

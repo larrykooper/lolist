@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>All Items</title>
+<%= stylesheet_link_tag "mystyle"  %>
+</head>
+<body>
+
+<h1>All Items</h1>
+<table border="1">
+ 
+
+ <% @items.each do |item| %>
+  <tr>
+ <td width="84"><%= item.create_date.strftime("%m/%d/%y") %></td>
+   <td width="70"><%= link_to item.number, :action => "edit", :id => item.id %></td>
+    <td width="70"><%= item.act_type %></td>
+ <td width="750"><%= item.item_desc %><br>
+<span class="tagcl"> <%= item.tags.collect{|tag| tag.name}.join(", ")  %></span>
+ </td>
+ <td class="ListActions">
+ <%= link_to 'Show', :action => 'show', :id => item %><br/>
+ <%= link_to 'Edit', :action => 'edit', :id => item %><br/>
+ <%= link_to 'Destroy', { :action => 'destroy', :id => item } ,
+ :confirm => "Are you sure?" %>
+ 
+ </td>
+  </tr>
+ <% end %>
+</table>
+<p><%= link_to "Create new item", :action => "new" %></p>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<table width="100%">
+<tr><td>
+Master is paper copy</td>
+<td>SWTD?</td>
+</tr>
+</table>
+
+<table border="1">
+  <tr>
+  <th>Create date</th>
+    <th>Number</th>
+    <th>Act type</th>
+    <th>Item desc</th>
+    <th>When<br/>done,<br />Value<br />(<u>to me</u>)</th>
+    </tr>
+  
+<% for item in @items %>
+  <tr>
+  
+  <td width="84" valign="top"><%= item.create_date.strftime("%m/%d/%y") %></td>
+   <td width="70" valign="top"><%= link_to item.number, :action => "edit", :id => item.id %></td>
+    <td width="70" valign="top"><%= item.act_type %></td>
+ <td width="750"><%= item.item_desc %><br>
+<span class="tagcl"> 
+<% item.tags.each do |t| %> 
+  
+    <%= link_to t.name, :action => "list", :id => t.name %>
+    
+  
+ <% end %>
+
+</span>
+ </td>  
+ <td valign="top"><%= item.value_when_done %></td>
+    
+    </tr>
+<% end %>
+</table>
+
+

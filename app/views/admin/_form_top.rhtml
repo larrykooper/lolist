@@ -1,0 +1,32 @@
+<table>    
+      <tr>
+        <td><label for="item_create_date">Create date</label></td>
+        <td>
+       	<% # Date entered defaults to day of last item %>
+       	<% myday = @lastitem.create_date.day %> 
+       	<% mymonth = @lastitem.create_date.month %> 
+       	<% myyear = @lastitem.create_date.year %>     
+        <%= select_month(mymonth, :prefix => 'create_date') %>
+      	<%= select_day(myday, :prefix => 'create_date') %>
+      	<%= select_year(myyear, :prefix => 'create_date') %>  	  
+        </td>
+      </tr>
+      <tr>
+        <td><label>LO Number:</label></td>
+        <td><%= text_field 'item', 'number' %></td> 
+      </tr>
+      <tr>
+        <td valign="top"><label>Type:</label></td>
+        <td><%= options = Item::ACTIVITY_TYPES 
+        select("item", "act_type", options ) %>
+&nbsp;
+<label>When done, Value (<u>to me</u>):</label>
+<%=
+options = Item::VALUES_WHENDONE
+select("item", "value_when_done", options )
+%>  
+  <br></td>
+    </tr><tr><td></td><td>  
+   <br><%= submit_tag 'Save' %></td></tr>
+</table>
+<br>

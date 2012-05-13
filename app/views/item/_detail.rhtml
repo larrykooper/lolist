@@ -1,0 +1,15 @@
+<% form_id = "tag-form-for-#{detail.id}" %>
+<%= form_remote_tag (:url => {:action => "tag", :id => detail},
+	:complete => "Element.toggle($(' #{form_id}' ))",
+	:success => visual_effect(:shake, "item-#{detail.id}"),
+	:update => "item-#{detail.id}",
+	:html => {:id => form_id, :style => "display:none"}) %>
+
+<%= text_field_tag "tag_list",
+	detail.tags.collect{|t| t.name}.join(" "),
+	:size => 40 %>
+<%= hidden_field_tag "form_id", form_id %>
+<%= end_form_tag %>
+
+<%= render :partial => "content",
+	:locals => {:item => detail, :form_id => form_id} %>

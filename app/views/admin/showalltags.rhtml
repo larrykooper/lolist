@@ -1,0 +1,7 @@
+ <% @labels.each do |label| %>
+ 
+ <%= link_to_remote(label.name , 
+       :update => 'mydiv',
+       :url => { :action => :uptags, :id => label.name, :ftgs => fval } ) %>
+      
+ <% end %>

@@ -1,0 +1,19 @@
+<%= error_messages_for 'item' %>
+
+<!--[form:item]-->
+<p><label for="item_create_date">Create date</label><br/>
+<%= date_select ('item', 'create_date', :order => [:month, :day, :year] ) %></p>
+
+<p><label for="item_number">Number</label><br/>
+<%= text_field 'item', 'number'  %></p>
+
+<p><label for="item_act_type">Act type</label><br/>
+<%= text_field 'item', 'act_type'  %></p>
+
+<p><label for="item_item_desc">Item desc</label><br/>
+<%= text_area "item", "item_desc", "cols" => 80 %></p>
+
+
+
+<!--[eoform:item]-->
+

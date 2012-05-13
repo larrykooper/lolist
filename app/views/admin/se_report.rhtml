@@ -1,0 +1,27 @@
+<h1>Top Priorities and Special Emphasis (SE)</h1>
+
+<table border="1">
+  <tr>  
+    <th>Date</th>
+    <th>Nbr</th>    
+    <th>Task</th>
+	<th>What is needed to do?<br/>(Swiss Cheese)</th>
+	<th>Where?<br/>(bold is<br/>Out)</th>       
+  </tr>
+  
+<% for item in @ses %>
+	<tr> 
+		<td width="84" valign="top"><%= item.create_date.strftime("%m/%d/%y") %></td>
+		<td width="70" valign="top"><%= link_to item.number, :action => "edit", :id => item.id %></td>    
+		<td width="300"><%= item.short_task_name %></td>
+		<td><%= item.swiss_cheese %></td>
+		<td>			
+			<% if item.out_indicator == true %>
+				<b><%= item.where_to_do %></b>			
+			<% else %>
+				<%= item.where_to_do %>		
+			<% end %>
+		</td>   
+  </tr>
+<% end %>
+</table>
